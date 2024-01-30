@@ -542,13 +542,13 @@
 % CF 10/2022 small change to add minipage and singlespace
 \newcommand{\makededication}
         {\newpage
-        \singlespace
+        {\singlespace
         \begin{center}
                 \topskip 3.5in
                 \begin{minipage}{4in}
                 \@dedication
                 \end{minipage}
-        \end{center}
+        \end{center}}
 }
 
 
