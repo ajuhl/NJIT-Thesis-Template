@@ -387,6 +387,24 @@
 \def\@advisorname{\@latex@warning@no@line{No \noexpand\advisorname given}}
 \def\@advisortitle{\@latex@warning@no@line{No \noexpand\advisortitle given}}
 
+% 1/31/2024 : Add command for codavisor
+\newif\if@coad
+\@coadfalse
+
+\def\coad#1#2{
+	\if@coad
+		\edef\@advisors{
+			\@advisors,
+			{#1, Dissertation Co-Advisor \hfill Date \par #2}
+		}
+	\else
+		\def\@advisors{
+			{#1, Dissertation Co-Advisor \hfill Date \par #2}
+		}
+		\@coadtrue
+	\fi
+}
+
 \newif\if@members
 \@membersfalse
 
@@ -424,6 +442,14 @@
 	\rule{\textwidth}{1.5pt}
 	\@advisorname, Dissertation Advisor \hfill Date
 	\par \@advisortitle
+	% 1/31/2024 Add coadvisor with \coad in approval.tex
+	% Also need to change above "Dissertation Advisor" to "Dissertation Co-Advisor"
+	{\@for \advisors:=\@advisors \do{
+			\vfill
+			\flushleft{}
+			\rule{\textwidth}{1.5pt}
+			\advisors
+	}}
 	{\@for \committee:=\@committee \do{
 			\vfill
 			\flushleft{}
